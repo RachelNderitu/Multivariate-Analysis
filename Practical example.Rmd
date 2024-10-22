@@ -1,0 +1,744 @@
+---
+title: "STA3020_Nderitu Rachael_666062_Mid_Sem"
+author: "Rachel"
+date: "`r Sys.Date()`"
+output: html_document
+---
+***QUESTION 1 (20 MARKS)***
+a) Load the mtcars dataset in R. Calculate the sample means for the following variables: mpg, hp, wt. (5 Marks)
+
+```{r}
+
+data(mtcars)
+
+# Calculate the sample means
+mean_mpg <- mean(mtcars$mpg)
+mean_hp <- mean(mtcars$hp)
+mean_wt <- mean(mtcars$wt)
+
+mean_mpg
+mean_hp
+mean_wt
+
+```
+
+
+**Interpretation**
+
+*Mean MPG (Miles per Gallon)*
+
+- 20.09062: This means that, on average, the cars in the mtcars dataset have a fuel efficiency of 20.09 miles per gallon.
+
+*Mean HP (Horsepower)*
+
+- 146.6875: This indicates that the average horsepower of the cars is 146.69. Horsepower measures the engine power, and this average shows the typical engine power for cars in this dataset.
+
+*Mean WT (Weight in 1000 lbs)*
+
+- 3.21725: This means the average weight of the cars in the dataset is 3.22 (1000 lbs), or 3,217.25 lbs. The typical car in the dataset weighs about 3,217 pounds.
+
+
+***b) Calculate the sample variances for the same variables. (5 Marks)***
+
+```{r}
+
+# Calculate the sample variances
+var_mpg <- var(mtcars$mpg)
+var_hp <- var(mtcars$hp)
+var_wt <- var(mtcars$wt)
+
+var_mpg
+var_hp
+var_wt
+
+```
+
+**Interpretation**
+
+*Variance of MPG (Miles per Gallon)*
+
+- 36.3241: This means the variance of the mpg (miles per gallon) values is 36.32. A higher variance indicates that the fuel efficiency values (mpg) of the cars are quite spread out around the mean (20.09 mpg), suggesting that there is a relatively wide range of fuel efficiency among the cars in the dataset.
+
+*Variance of HP (Horsepower)*
+
+- 4700.867: This large variance indicates that the horsepower values are highly dispersed around the mean (146.69 hp). This suggests that there is a significant variation in the engine power of the cars, with some cars having much higher or lower horsepower compared to the average.
+
+*Variance of WT (Weight in 1000 lbs)*
+
+- 0.957379: The variance of weight is relatively small compared to horsepower, which suggests that the car weights are not as widely dispersed as horsepower. This means that the weights of the cars are more tightly clustered around the mean (3.21725 thousand lbs or 3,217 lbs).
+
+
+***c) Compute the sample covariances between mpg and hp, and between mpg and wt. (5 Marks)***
+
+```{r}
+
+# Compute the covariances
+cov_mpg_hp <- cov(mtcars$mpg, mtcars$hp)
+cov_mpg_wt <- cov(mtcars$mpg, mtcars$wt)
+
+cov_mpg_hp
+cov_mpg_wt
+
+```
+**Interpretation**
+
+*Covariance between MPG (miles per gallon) and HP (horsepower)*
+
+- -320.7321: This negative covariance indicates an inverse relationship between fuel efficiency (mpg) and horsepower (hp). When a car's horsepower increases, its fuel efficiency tends to decrease, which makes sense because more powerful engines generally consume more fuel, resulting in lower mpg.
+
+*Covariance between MPG (miles per gallon) and WT (weight)*
+
+- -5.116685: This negative covariance also indicates an inverse relationship between fuel efficiency (mpg) and weight (wt). As the weight of a car increases, its fuel efficiency tends to decrease. Heavier cars typically require more energy to move, reducing fuel efficiency.
+
+
+***d) Compute the sample correlations between mpg and hp, and between mpg and wt. (5 Marks)***
+
+```{r}
+
+# Compute the correlations
+cor_mpg_hp <- cor(mtcars$mpg, mtcars$hp)
+cor_mpg_wt <- cor(mtcars$mpg, mtcars$wt)
+
+cor_mpg_hp
+cor_mpg_wt
+
+```
+
+**Interpretation**
+
+*Correlation between MPG (miles per gallon) and HP (horsepower)*
+
+- The negative correlation coefficient of -0.776 indicates a strong negative linear relationship between fuel efficiency (mpg) and horsepower (hp). As horsepower increases, fuel efficiency tends to decrease significantly. The closer the correlation is to -1, the stronger the inverse relationship, so this shows a strong tendency for more powerful cars to have lower mpg.
+
+*Correlation between MPG (miles per gallon) and WT (weight)*
+
+- The correlation coefficient of -0.868 indicates an even stronger negative linear relationship between fuel efficiency (mpg) and weight (wt). Heavier cars tend to have lower fuel efficiency, and the correlation is very close to -1, indicating that weight is a very strong predictor of lower mpg.
+
+
+
+***QUESTION 2 (20 MARKS)***
+a) Define two random variables from the iris dataset: Sepal.Length and Sepal.Width. Assign coefficients 2 and 3, respectively, to these variables. Write an R script to compute the linear combination. (5 Marks)
+
+
+```{r}
+
+# Load the iris dataset
+data(iris)
+head(iris)
+
+# Define the linear combination Y = 2 * Sepal.Length + 3 * Sepal.Width
+Y <- 2 * iris$Sepal.Length + 3 * iris$Sepal.Width
+
+head(Y)
+
+```
+
+**Interprete**
+
+- This code creates a new variable Y that is a linear combination of Sepal.Length and Sepal.Width from the iris dataset, with the first six values of Y being 20.7, 18.8, 19.0, 18.5, 20.8, and 22.5.
+
+
+***b) Calculate the sample mean of the linear combination Y. (5 Marks)***
+
+```{r}
+
+# Calculate the sample mean of Y
+mean_Y <- mean(Y)
+
+mean_Y
+
+```
+- This value represents the average of all the values in Y, indicating that, on average, the linear combination 2 × Sepal.Length + 3 × Sepal.Width results in a value of 20.86 across the 150 observations in the iris dataset.
+
+***c) Compute the sample variance of the linear combination Y. (5 Marks)***
+
+```{r}
+
+# Calculate the sample variance of Y
+var_Y <- var(Y)
+
+var_Y
+
+```
+
+- The variance of the variable Y is approximately 3.94. The variance is a measure of how spread out the values of Y are from the mean value (which was previously calculated as 20.86). A variance of 3.94 indicates that the values of Y deviate moderately from the mean.
+
+
+***d) Calculate the covariance and correlation between two linear combinations: (5 Marks)***
+***o Y1=2×Sepal.Length+3×Sepal.Width***
+***o Y2=4×Petal.Length+1×Petal.Width***
+
+```{r}
+
+# Define the second linear combination Y2 = 4 * Petal.Length + 1 * Petal.Width
+Y2 <- 4 * iris$Petal.Length + 1 * iris$Petal.Width
+
+# Compute the covariance between Y1 and Y2
+cov_Y1_Y2 <- cov(Y, Y2)
+
+# Compute the correlation between Y1 and Y2
+cor_Y1_Y2 <- cor(Y, Y2)
+
+# Output the covariance and correlation
+cov_Y1_Y2
+cor_Y1_Y2
+
+```
+
+**Interpretation**
+
+*Covariance between Y1 and Y2*
+
+- 6.90627: This positive covariance value indicates that there is a positive relationship between Y1 and Y2. When Y1 increases, Y2 tends to increase as well. The magnitude (6.91) suggests a moderate degree of joint variability between the two linear combinations.
+
+*Correlation between Y1 and Y2*
+
+- 0.446: The correlation coefficient of 0.446 indicates a moderate positive linear relationship between Y1 and Y2. A correlation of 0.446 means that the two variables tend to increase together, but the relationship is not strong (a perfect positive correlation would be 1).
+
+
+***QUESTION 3 (20 MARKS)***
+***a) Load the swiss dataset. Generate histograms for each variable (Fertility, Education, Agriculture, Catholic, Infant.Mortality) to assess the distribution and normality of the data. (5 Marks)***
+
+
+```{r}
+
+library(ggplot2)
+library(GGally)
+
+data("swiss")
+
+# a) Generate histograms for each variable
+par(mfrow = c(3, 2))  # Set up plotting area
+hist(swiss$Fertility, main = "Distribution of Fertility", xlab = "Fertility", col = "navy")
+hist(swiss$Education, main = "Distribution of Education", xlab = "Education", col = "lightgreen")
+hist(swiss$Agriculture, main = "Distribution of Agriculture", xlab = "Agriculture", col = "hotpink")
+hist(swiss$Catholic, main = "Distribution of Catholic", xlab = "Catholic", col = "yellow")
+hist(swiss$Infant.Mortality, main = "Distribution of Infant Mortality", xlab = "Infant Mortality", col = "coral")
+par(mfrow = c(1, 1))
+
+```
+**Interpretation**
+
+**1. Fertility**
+
+- The distribution of Fertility appears approximately normal, with a slight concentration of values around the 60-80 range. There are a few values on the lower and higher ends, but most observations cluster around the middle.
+
+**2. Education**
+
+- The distribution of Education is right-skewed (positively skewed). Most of the values are concentrated on the lower end, especially between 0 and 20. Few observations have higher education values (greater than 40), which indicates that most regions in the dataset had lower levels of education.
+
+**3. Agriculture**
+
+- The distribution of Agriculture is more uniform but slightly left-skewed. There’s a fairly even spread across the 0-100 range, with a small increase around 50-80. There’s no pronounced peak, indicating that the proportion of land dedicated to agriculture varies widely.
+
+**4. Catholic**
+
+- The distribution of Catholic is bimodal. There’s a high concentration of values near 0 and around 100, suggesting two distinct groups: regions with very few Catholics and regions with a large proportion of Catholics. Very few regions have mid-range values (between 20 and 80).
+
+**5. Infant Mortality**
+
+- The distribution of Infant Mortality is approximately normal, with most values concentrated between 17 and 25. The spread is fairly even, and there are no extreme outliers on either end.
+
+
+
+**b) Apply a log transformation to the Fertility and Education variables and compare the resulting distributions to their original forms. (5 Marks)**
+
+```{r}
+
+# b) Apply log transformation to Fertility and Education
+swiss$Fertility_log <- log(swiss$Fertility)
+swiss$Education_log <- log(swiss$Education)
+
+# Plot original vs log-transformed histograms for Fertility and Education
+par(mfrow = c(2, 2))
+hist(swiss$Fertility, main = "Original Fertility", xlab = "Fertility", col = "coral")
+hist(swiss$Fertility_log, main = "Log-transformed Fertility", xlab = "Log(Fertility)", col = "coral")
+hist(swiss$Education, main = "Original Education", xlab = "Education", col = "green")
+hist(swiss$Education_log, main = "Log-transformed Education", xlab = "Log(Education)", col = "green")
+par(mfrow = c(1, 1))
+
+```
+
+**Interpretation**
+
+**1. Fertility**
+
+- The original fertility histogram (top left) appears relatively symmetric and closely resembles a normal distribution, with a peak around the values of 60 to 80. While there are slight tails on either side, the overall shape suggests that it is not heavily skewed.
+
+- The log-transformed fertility histogram (top right), while still somewhat symmetric, can show a slight compression of values, particularly for higher fertility rates. The peaks and distribution may appear less pronounced compared to the original histogram, which can detract from the normality.
+
+**2. Education**
+
+- Original Education (Bottom Left): The original education distribution is heavily right-skewed (positively skewed). Most values are concentrated in the lower range (0-10), with very few regions having high education levels.
+
+- Log-transformed Education (Bottom Right): After the log transformation, the distribution becomes much more normal. The skewness is reduced, and the data is more evenly spread across the range, with a concentration of values around the center. The transformation helps spread out the smaller values and compresses the larger ones, reducing skewness and bringing the distribution closer to normality.
+
+**Conclusion**
+
+- In this case, the original fertility distribution does appear to be more normally distributed than the log-transformed version. The log transformation often aims to correct for skewness, but if the original data is already approximately normal, the transformation can sometimes introduce more complexity rather than improve the normality.
+
+
+**c) Create scatter plots to explore relationships between Fertility and Education, and Agriculture and Infant mortality. Assess linearity and detect any outliers. (5 Marks)**
+
+```{r}
+
+ggplot(swiss, aes(x = Education, y = Fertility)) + 
+  geom_point(color = "blue") + 
+  ggtitle("Fertility vs Education") + 
+  theme_minimal()
+
+ggplot(swiss, aes(x = Agriculture, y = Infant.Mortality)) + 
+  geom_point(color = "red") + 
+  ggtitle("Agriculture vs Infant Mortality") + 
+  theme_minimal()
+
+```
+
+**Interpretation**
+
+**Fertility vs Education**
+
+- The plot shows the relationship between fertility rates (y-axis) and education levels (x-axis) for different regions in Switzerland. There appears to be a negative correlation between education and fertility. As education levels increase, fertility rates tend to decrease.
+
+- Most of the points cluster in the higher fertility range with lower education values, suggesting that regions with lower educational attainment may have higher fertility rates.
+
+- A few points are noticeably lower in fertility but are distributed across a range of education levels, indicating potential outliers or regions that deviate from the general trend.
+
+** Agriculture and Infant mortality**
+
+- There is no clear linear relationship between the percentage of agricultural workers and infant mortality. The points are scattered without a clear upward or downward trend, which suggests that agriculture might not have a simple or direct correlation with infant mortality in this dataset.
+
+- The infant mortality values tend to cluster between 17 and 22 deaths per 1,000 live births. Agriculture values vary more widely, ranging from around 0% to over 75%.
+
+- Outliers - A few points stand out, particularly on the lower end of agricultural involvement (around 0%–10%), where there are both low and high infant mortality rates.
+
+
+**d) Generate a matrix of scatter plots for all the variables in the dataset. Summarize the relationships between the variables based on your observations. (5 Marks)**
+
+```{r}
+
+ggpairs(swiss)
+
+pairs(swiss, main = "Scatter plot matrix for the swiss dataset")
+
+```
+
+**Interpretation**
+
+**First Plot (ggpairs from GGally in R)**
+
+- This plot shows the scatter plot matrix alongside correlation coefficients and distribution densities.
+
+*Diagonal (Density Plots)*
+
+- The diagonal plots show the distribution of each variable. For example, "Fertility" has a right-skewed distribution, while "Examination" appears to be more bell-shaped.
+
+*Off-Diagonal (Scatter Plots and Correlations)*
+
+- Each cell represents a scatter plot between two variables, giving a sense of their relationship. The correlation (Corr) is displayed for each pair, with significance levels marked by asterisks: * means significance at p < 0.05, ** at p < 0.01, *** at p < 0.001
+
+**Key Insights**
+
+- Fertility vs Agriculture: A positive correlation (0.353, p < 0.05) suggests a moderate relationship—more agricultural workers are somewhat associated with higher fertility rates.
+
+- Fertility vs Education: Strong negative correlation (-0.664, p < 0.001), indicating that more education is associated with lower fertility.
+
+- Fertility vs Examination: Strong negative correlation (-0.646, p < 0.001), indicating regions with higher examination scores have lower fertility rates.
+
+- Catholic vs Education: A strong negative correlation (-0.573, p < 0.001), implying that regions with higher Catholic proportions tend to have lower education levels.
+
+- Education vs Fertility (Log): Strong negative correlation (-0.732, p < 0.001), indicating a strong inverse relationship between the log of fertility and education.
+
+**Second Plot (pairs function in base R)**
+
+- This plot matrix is similar but simpler, without the added correlation coefficients or density plots. It focuses entirely on scatter plots between all pairs of variables. These plots help visualize how each pair of variables is related.
+
+- Fertility vs Education: Clear negative relationship (as seen in the previous matrix).
+
+- Agriculture vs Examination: Also shows a negative relationship, suggesting that as the agricultural population increases, examination scores tend to be lower.
+
+- Catholic vs Education: Displays a negative trend, as expected.
+
+*Logarithmic Transformations*
+
+- The logarithmic transformations of Fertility and Education (Fertility_log, Education_log) have been included, making relationships more linear and easier to interpret in some cases. For example, the relationship between Fertility_log and Education_log is linear and negative.
+
+*Summary*
+
+- Fertility: Positively correlated with agriculture, and negatively correlated with education and examination scores. This suggests that higher levels of education and examination scores are associated with lower fertility rates.
+
+- Education: Strong inverse relationship with Fertility, Examination, and Catholicism. More education tends to be associated with lower fertility and fewer agricultural workers.
+
+- Infant Mortality: Does not show strong correlations with other variables, which is consistent with your earlier scatter plot that showed no clear pattern between agriculture and infant mortality.
+
+***QUESTION 4 (20 MARKS)***
+***a) Load the faithful dataset in R. Compute the sample mean vector and the sample variance-covariance matrix for the variables eruptions and waiting. (5 Marks)***
+
+
+```{r}
+
+data(faithful)
+head(faithful)
+
+# a) Compute the sample mean vector and variance-covariance matrix
+mean_vector <- colMeans(faithful)
+cov_matrix <- cov(faithful)
+
+mean_vector
+cov_matrix
+
+```
+
+**Interpretation**
+
+- The mean eruption duration is approximately 3.49 minutes.
+
+- The mean waiting time between eruptions is approximately 70.90 minutes.
+
+- These values represent the average duration of an eruption and the average time between eruptions in the sample dataset.
+
+*Variance-Covriance matrix
+
+*Diagonal elements (variance)*
+
+- The variance of eruption durations is 1.302728. This value represents the variability of eruption durations around the mean (3.49 minutes).
+
+- The variance of waiting times is 184.82331, which indicates a much higher variability in waiting times compared to eruption durations.
+
+*Off-diagonal elements (covariance)*
+
+- The covariance between eruption durations and waiting times is 13.97781. This positive value indicates that there is a positive relationship between the two variables, meaning that longer eruptions are associated with longer waiting times.
+
+
+***b) Test whether eruptions and waiting follow a multivariate normal distribution. Provide evidence for your conclusion. (5 Marks)***
+
+```{r}
+
+library(MVN)
+
+# Perform Mardia's test for multivariate normality
+mvn_test <- mvn(data = faithful, mvnTest = "mardia")
+
+mvn_test$multivariateNormality
+
+```
+
+**Interpretation**
+
+*Mardia's Skewness* - Result: NO (fails the test for multivariate normality based on skewness)
+
+- The null hypothesis for Mardia's skewness test is that the data is multivariate normal.
+Since the p-value (0.01346) is less than the usual significance level of 0.05, we reject the null hypothesis. This means there is significant evidence that the data is not multivariate normal based on skewness.
+
+*Mardia's Kurtosis* - Result: NO (fails the test for multivariate normality based on kurtosis)
+
+- The null hypothesis for Mardia's kurtosis test is that the data is multivariate normal.
+The p-value is extremely small (far less than 0.05), indicating that the null hypothesis is rejected. Thus, there is strong evidence that the data is not multivariate normal based on kurtosis.
+
+Overall Result (MVN) - Result: NO (the data is not multivariate normal)
+
+*Summary*
+
+- Both Mardia’s skewness and kurtosis tests suggest that the faithful dataset does not follow a multivariate normal distribution. The overall conclusion from Mardia’s test is that the data does not meet the assumption of multivariate normality.
+
+***c) Visualize the bivariate distribution of eruptions and waiting using a contour plot. (5 Marks)***
+
+```{r}
+
+library(ggplot2)
+
+ggplot(faithful, aes(x = eruptions, y = waiting)) +
+  geom_point() +  # Scatter plot of the points
+  stat_density_2d(aes(fill = ..level..), geom = "polygon") +  # Contour plot
+  scale_fill_viridis_c() +
+  ggtitle("Bivariate Distribution of Eruptions and Waiting") +
+  theme_minimal()
+
+```
+
+**Interpretation**
+
+- Scatter plot (black dots): These points represent individual data points showing the relationship between the duration of eruptions and the waiting time until the next eruption. The points are more densely concentrated in two regions, indicating two primary clusters of data.
+
+- Bivariate density contours: The colorful contours show the estimated density of the points in the bivariate space. Dark purple areas represent lower density regions, while yellow regions represent areas of higher density.
+
+*There are two main density clusters:*
+
+- Cluster 1 (Left): Shorter eruptions (around 2 minutes) are followed by shorter waiting times (about 50-60 minutes).
+
+- Cluster 2 (Right): Longer eruptions (around 4-5 minutes) are followed by longer waiting times (about 75-90 minutes).
+
+- Color scale (level): The color intensity represents the density level. Higher density areas are shown in bright yellow, and the density decreases as you move towards dark purple.
+
+*Summary*
+
+- There is a clear pattern: shorter eruptions tend to be followed by shorter waiting times, and longer eruptions are followed by longer waiting times. The geyser seems to have two modes of operation (shorter and longer eruptions), which are reflected in the two density clusters.
+
+***d) Calculate the probability density function for an observation with eruptions = 4.0 and waiting = 80. (5 Marks)***
+
+```{r}
+
+library(mvtnorm)
+
+# Define the observation point (eruptions = 4.0, waiting = 80)
+x <- c(4.0, 80)
+
+# Calculate the multivariate normal PDF at this point
+pdf_value <- dmvnorm(x, mean = mean_vector, sigma = cov_matrix)
+
+# Display the PDF value
+pdf_value
+
+```
+*Interpretation*
+
+- The pdf_value = 0.01772165 is the probability density at the point where eruptions = 4.0 and waiting = 80. It does not represent a probability, but rather the height of the density function at that point.
+
+- This value indicates a moderately low density at this specific observation point. This means that while such a combination of eruption time and waiting time is possible, it’s not the most frequent or likely one under the current bivariate normal model.
+
+- The PDF value tells you how plausible this combination of 4.0 minutes for eruptions and 80 minutes for waiting is, given the underlying multivariate distribution of the data.
+
+***QUESTION 5 (20 MARKS)***
+***a) Simulate 100 observations from a bivariate normal distribution with mean vector μ=[2,3] and covariance matrix Σ=[1    0.5***
+                              ***0.5  1]***
+***Plot the data points in a scatter plot and calculate the sample mean vector. (5 Marks)***
+
+```{r}
+
+library(MASS)  # For mvrnorm
+
+# Set the mean vector and covariance matrix
+mu <- c(2, 3)
+sigma <- matrix(c(1, 0.5, 0.5, 1), nrow = 2)
+
+# Simulate 100 observations
+set.seed(123)  # For reproducibility
+observations <- mvrnorm(n = 100, mu = mu, Sigma = sigma)
+
+# Convert to data frame
+data <- data.frame(observations)
+colnames(data) <- c("X1", "X2")
+
+# Plot the data points in a scatter plot
+plot(data$X1, data$X2, 
+     main = "Scatter Plot of Bivariate Normal Distribution", 
+     xlab = "X1", ylab = "X2", 
+     pch = 19, col = "blue")
+
+# Calculate the sample mean vector
+sample_mean_vector <- colMeans(data)
+sample_mean_vector
+
+```
+
+**Interpretation**
+
+*Scatter Plot*
+
+- The scatter plot shows a cloud of points representing the relationship between X1 and X2. The positive correlation (covariance of 0.5) between X1 and X2 is evident as the points generally trend upward, meaning that as X1 increases, X2 also tends to increase.
+The points are not perfectly aligned, as expected from random data sampled from a normal distribution, but the overall trend is visible.
+
+*Sample Mean Vector*
+
+- The sample mean for X1 (2.132) and X2 (3.025) is close to the specified population means of 2 and 3, respectively. The slight difference is due to the randomness in the sample. The sample mean gives an estimate of the true mean of the distribution from which the data was drawn.
+
+***b) Construct 95% one-at-a-time confidence intervals for the two population means. Discuss how the interval width changes as the sample size increases to 200. (5 Marks)***
+
+
+```{r}
+
+# Function to compute confidence intervals
+compute_ci <- function(data, alpha = 0.05) {
+  n <- nrow(data)
+  means <- colMeans(data)
+  sds <- apply(data, 2, sd)
+  
+  # Calculate the margin of error
+  margin_error <- qt(1 - alpha / 2, df = n - 1) * (sds / sqrt(n))
+  
+  # Construct confidence intervals
+  lower_bound <- means - margin_error
+  upper_bound <- means + margin_error
+  
+  return(data.frame(Lower = lower_bound, Upper = upper_bound))
+}
+
+# One-at-a-time confidence intervals for sample size 100
+ci_100 <- compute_ci(data)
+ci_100
+
+# simulate for sample size 200 and compute the intervals
+data_200 <- mvrnorm(n = 200, mu = mu, Sigma = sigma)
+ci_200 <- compute_ci(data.frame(data_200))
+ci_200
+
+```
+
+**Interpretation**
+
+*Width of Confidence Intervals*
+
+- As expected, the confidence intervals for sample size 200 are narrower than those for sample size 100. This is because increasing the sample size reduces the margin of error, leading to more precise estimates of the mean.
+
+*Estimates of the Mean*
+
+- Both confidence intervals for X1 and X2 are centered around values that are close to the true means of X1 = 2 and X2 = 3, with small variations due to sampling randomness.
+The true population mean is likely to be within the range provided by the confidence intervals.
+
+
+***c) Apply the Bonferroni method to compute simultaneous 95% confidence intervals for the two population means. Compare these intervals to the one-at-a-time confidence intervals. (5 Marks)***
+
+
+```{r}
+
+# Define the Bonferroni-adjusted alpha level
+alpha_bonferroni <- 0.05 / 2  # For two comparisons
+
+# Function to compute confidence intervals using Bonferroni adjustment
+compute_ci_bonferroni <- function(data, alpha = alpha_bonferroni) {
+  n <- nrow(data)
+  means <- colMeans(data)
+  sds <- apply(data, 2, sd)
+  
+  # Calculate the margin of error
+  margin_error <- qt(1 - alpha / 2, df = n - 1) * (sds / sqrt(n))
+  
+  # Construct confidence intervals
+  lower_bound <- means - margin_error
+  upper_bound <- means + margin_error
+  
+  return(data.frame(Lower = lower_bound, Upper = upper_bound))
+}
+
+# Bonferroni confidence intervals for sample size 100
+bonferroni_ci_100 <- compute_ci_bonferroni(data)
+bonferroni_ci_100
+
+# Bonferroni confidence intervals for sample size 200
+bonferroni_ci_200 <- compute_ci_bonferroni(data.frame(data_200))
+bonferroni_ci_200
+
+```
+**Comparison of Intervals**
+
+*Sample Size 100*
+
+*X1*
+
+One-at-a-Time CI: [1.944, 2.320]
+Bonferroni CI: [1.917, 2.348]
+
+- Comparison: The one-at-a-time interval is slightly wider than the Bonferroni interval. This indicates that the Bonferroni adjustment provides a more conservative estimate, likely due to accounting for the potential for Type I errors when making multiple comparisons.
+
+*X2*
+
+One-at-a-Time CI: [2.845, 3.204]
+Bonferroni CI: [2.818, 3.231]
+
+- Comparison: Similar to X1, the one-at-a-time interval is slightly wider than the Bonferroni interval.
+
+*Sample Size 200*
+
+*X1*
+
+One-at-a-Time CI: [1.880, 2.161]
+Bonferroni CI: [1.859, 2.182]
+
+- Comparison: The one-at-a-time interval is again wider than the Bonferroni interval. The Bonferroni CI remains narrower but still captures the range expected based on the sample mean and variability.
+
+*X2*
+
+One-at-a-Time CI: [2.918, 3.187]
+Bonferroni CI: [2.898, 3.207]
+
+- Comparison: Here too, the one-at-a-time interval is slightly wider than the Bonferroni interval, but they are fairly close.
+
+**Summary**
+
+*Wider One-at-a-Time Intervals*
+
+- In general, the one-at-a-time confidence intervals for both sample sizes (100 and 200) tend to be wider than their corresponding Bonferroni intervals. This suggests that the Bonferroni method is yielding more precise estimates due to its adjustment for multiple comparisons.
+
+*Conservative Nature of Bonferroni Intervals*
+
+- The Bonferroni method is a conservative approach, which means it aims to reduce the chances of Type I errors by being more cautious. Thus, it is expected to result in narrower intervals when estimating multiple means.
+
+*Impact of Sample Size*
+
+- As the sample size increases from 100 to 200, the intervals for both methods narrow, reflecting reduced uncertainty. However, the Bonferroni intervals remain consistently narrower than the one-at-a-time intervals.
+
+*Practical Considerations*
+
+In scenarios where multiple comparisons are made (e.g., testing two means simultaneously), the Bonferroni adjustment provides a more cautious approach, which may be preferred to control the overall error rate. If individual estimates are the primary focus without concern for multiple testing, one-at-a-time intervals can provide more intuitive results.
+
+
+
+***d) Test the null hypothesis that the correlation between the two variables is zero. Perform a hypothesis test using the t-test for correlation and interpret the results. (5 Marks)***
+
+
+```{r}
+
+# Calculate correlation coefficient
+correlation_test <- cor.test(data$X1, data$X2)
+
+correlation_test
+
+```
+**Interpretation**
+
+*Correlation Coefficient (r)* - \(0.455973\)
+
+- This value indicates a moderate positive correlation between the variables \(X1\) and \(X2\). This suggests that as the values of \(X1\) increase, the values of \(X2\) also tend to increase. The closer the correlation coefficient is to 1, the stronger the positive correlation.
+
+*t-statistic (t)* - \(5.0718\)
+
+- The t-statistic measures how many standard deviations the observed correlation is away from the null hypothesis of zero correlation. A t-statistic of \(5.0718\) indicates that the observed correlation is significantly different from zero.
+
+*Degrees of Freedom (df)* - \(98\)
+
+- This is calculated as \(n - 2\) (where \(n\) is the number of observations). With 100 observations, the degrees of freedom is \(98\).
+
+*p-value* - \(1.866 \times 10^{-6}\)
+
+- The very small p-value indicates a strong statistical significance. Since it is much less than the common significance level of \(0.05\), you reject the null hypothesis that the correlation is zero.
+
+*Alternative Hypothesis*
+
+- The test was conducted to see if the true correlation is not equal to zero. Given the results, there is sufficient evidence to conclude that there is a significant correlation between \(X1\) and \(X2\).
+
+*95% Confidence Interval* - \([0.2850878, 0.5987650]\)
+
+- This interval estimates the range in which the true population correlation coefficient is likely to fall. Since the entire interval is above zero, it further supports the conclusion that there is a significant positive correlation between the two variables. This means that we are 95% confident that the true correlation lies within this range.
+
+- There is a moderate positive correlation between the variables \(X1\) and \(X2\), as indicated by the correlation coefficient of approximately \(0.46\).
+- The correlation is statistically significant, with a t-statistic of \(5.0718\) and a p-value of \(1.866 \times 10^{-6}\), allowing us to reject the null hypothesis.
+- The 95% confidence interval for the correlation coefficient indicates that the true correlation is likely to be between \(0.285\) and \(0.599\).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
